@@ -82,8 +82,6 @@ class MapView extends Component {
         document
           .getElementById("radioOne")
           .addEventListener("click", function(event) {
-            console.log("some afc stuff");
-
             myData.clearLayers();
             map.removeLayer(myData);
 
@@ -115,8 +113,6 @@ class MapView extends Component {
         document
           .getElementById("radioTwo")
           .addEventListener("click", function(event) {
-            console.log("all the teams again");
-
             myData.clearLayers();
             map.removeLayer(myData);
 
@@ -149,8 +145,6 @@ class MapView extends Component {
         document
           .getElementById("radioThree")
           .addEventListener("click", function(event) {
-            console.log("all the teams again");
-
             myData.clearLayers();
             map.removeLayer(myData);
 
@@ -172,7 +166,6 @@ class MapView extends Component {
               .then(res => res.json())
               .then(function(data) {
                 nfl_data.addData(data.features);
-                // nfl_data.addData(data.features);
               });
 
             myData.addLayer(nfl_data);
@@ -209,6 +202,7 @@ class MapView extends Component {
         <div className="container">
           <div id="map" />
           <table className="table table-hover" id="teams">
+            Only AFC Teams
             <tr>
               <th className="border">Team Name</th>
               <th className="border">Conference</th>
