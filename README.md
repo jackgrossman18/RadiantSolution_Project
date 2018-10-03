@@ -19,3 +19,14 @@ Immediately below, you will see a map that is filter to only show AFC teams.
 
 
 ![AFC Map](https://user-images.githubusercontent.com/25868208/46432246-c3ee0300-c71b-11e8-8ad9-1f4167e07f99.png)
+
+
+### GeoJSON Feature Details
+
+The map is also capable of producing a popup when the user clicks on one of the feature icons (the football).
+
+Once the user has clicked a feature, the map will display the relevant information for the NFL team that resides at the feature point location.
+
+Immediately below you will see the popup for the Philadelphia Eagles.
+
+![Philadelphia Eagles](https://user-images.githubusercontent.com/25868208/46432494-6b6b3580-c71c-11e8-8b21-e2c2936d91a2.png)
