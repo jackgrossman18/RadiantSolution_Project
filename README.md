@@ -15,5 +15,7 @@ This GeoJSON was build using features made available by Leaflet.
 
 The three buttons that reside beneath the map allow the user to filter the GeoJSON. Upon clicking a button, the user is capable of filter for just AFC team, just NFC, or all of the teams, respectively. 
 
+Immediately below, you will see a map that is filter to only show AFC teams.
+
 
 ![AFC Map](https://user-images.githubusercontent.com/25868208/46432246-c3ee0300-c71b-11e8-8ad9-1f4167e07f99.png)
