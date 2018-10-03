@@ -21,12 +21,18 @@ class MapView extends Component {
         .then(res => res.json())
         .then(table =>
           table.features.forEach(function(entry) {
-            document.getElementById("teams").innerHTML +=
-              '<tr className="border"><td className="border">' +
-              entry.properties.Team +
-              "</td><td>" +
-              entry.properties.Conference +
-              "</td></tr>";
+            {
+              {
+                if (entry.properties.Conference === "AFC") {
+                  document.getElementById("teams").innerHTML +=
+                    '<tr className="border"><td className="border">' +
+                    entry.properties.Team +
+                    "</td><td>" +
+                    entry.properties.Conference +
+                    "</td></tr>";
+                }
+              }
+            }
           })
         );
     };
@@ -140,36 +146,38 @@ class MapView extends Component {
             myData.addLayer(nfl_data);
             myData.addTo(map);
           });
-        // var afcLayer = L.geoJSON(data.features, {
-        //   filter: function(feature, layer) {
-        //     return feature.properties.Conference === "AFC";
-        //   },
-        //   pointToLayer: function(feature, latlng) {
-        //     var markerConfig = buildPopUpConfig(feature.properties);
-        //     return L.marker(latlng, { icon: myIcon })
-        //       .bindPopup(markerConfig.HTML)
-        //       .openPopup();
-        //   }
-        // });
-        // var nfcLayer = L.geoJSON(data.features, {
-        //   filter: function(feature, layer) {
-        //     return feature.properties.Conference === "NFC";
-        //   },
-        //   pointToLayer: function(feature, latlng) {
-        //     var markerConfig = buildPopUpConfig(feature.properties);
-        //     return L.marker(latlng, { icon: myIcon })
-        //       .bindPopup(markerConfig.HTML)
-        //       .openPopup();
-        //   }
-        // });
-        // var allTeamsLayer = L.geoJSON(data.features, {
-        //   pointToLayer: function(feature, latlng) {
-        //     var markerConfig = buildPopUpConfig(feature.properties);
-        //     return L.marker(latlng, { icon: myIcon })
-        //       .bindPopup(markerConfig.HTML)
-        //       .openPopup();
-        //   }
-        // });
+
+        document
+          .getElementById("radioThree")
+          .addEventListener("click", function(event) {
+            console.log("all the teams again");
+
+            myData.clearLayers();
+            map.removeLayer(myData);
+
+            nfl_data = L.geoJson(null, {
+              pointToLayer: function(feature, latlng) {
+                var markerConfig = buildPopUpConfig(feature.properties);
+                return L.marker(latlng, { icon: myIcon })
+                  .bindPopup(markerConfig.HTML)
+                  .openPopup();
+              },
+
+              filter: function(feature, layer) {
+                return feature.properties.Conference === "NFC";
+              }
+            });
+
+            var nfcData = fetch(NFL)
+              .then(res => res.json())
+              .then(function(data) {
+                nfl_data.addData(data.features);
+                // nfl_data.addData(data.features);
+              });
+
+            myData.addLayer(nfl_data);
+            myData.addTo(map);
+          });
       });
 
     var myIcon = L.divIcon({
@@ -191,18 +199,39 @@ class MapView extends Component {
     var map = L.map("map", {
       zoomControl: false
     })
-      .setView([38, -97], 4.2)
+      .fitBounds([[18.9, -69], [47.0, -117.3]])
       .addLayer(osm);
   }
   render() {
     return (
       <div>
+        <div className="container">
+          <div id="map" />
+          <table className="table table-hover" id="teams">
+            <tr>
+              <th className="border">Team Name</th>
+              <th className="border">Conference</th>
+            </tr>
+          </table>
+        </div>
         <div id="panel">
           <form>
             <label>
               <input type="radio" id="radioOne" name="AFC" value="N" checked />{" "}
               Select AFC Teams
               <img src="https://mbtskoudsalg.com/images/nfc-nfl-logo-png-8.png" />
+            </label>
+            <br />
+            <label>
+              <input
+                type="radio"
+                id="radioThree"
+                name="NFC"
+                value="N"
+                checked
+              />{" "}
+              Select NFC Teams
+              <img src="https://mbtskoudsalg.com/images/nfc-nfl-logo-png-2.png" />
             </label>
             <br />
             <label className="NFL" for="radioTwo">
@@ -213,15 +242,6 @@ class MapView extends Component {
             <div class="box green" />
             <br />
           </form>
-        </div>
-        <div className="container">
-          <div id="map" />
-          <table className="table table-hover" id="teams">
-            <tr>
-              <th className="border">Team Name</th>
-              <th className="border">Conference</th>
-            </tr>
-          </table>
         </div>
       </div>
     );
