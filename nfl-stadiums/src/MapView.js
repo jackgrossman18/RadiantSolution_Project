@@ -1,19 +1,13 @@
 import React, { Component } from "react";
 import L from "leaflet";
 
+// GeoJson object array of NFL Football teams
 const NFL =
   "https://gist.githubusercontent.com/brianhatchl/59d99872a9cfc0e126211192673991b8/raw/bf706c06ef41f05a35b1bd730639eed54cc7af27/stadiums.json";
 
 class MapView extends Component {
-  constructor() {
-    super();
-    this.onlyAFC = this.onlyAFC.bind(this);
-  }
-  onlyAFC(e) {
-    e.preventDefault();
-    console.log("The link was clicked.");
-  }
   componentDidMount() {
+    // iterate over geojson, pull important values to populate table
     window.onload = function() {
       document.getElementById("teams").innerHTML =
         "<tr><th>Team Name</th><th>Conference</th>";
@@ -21,6 +15,7 @@ class MapView extends Component {
         .then(res => res.json())
         .then(table =>
           table.features.forEach(function(entry) {
+            // filter table to only show AFC teams
             {
               {
                 if (entry.properties.Conference === "AFC") {
@@ -37,6 +32,7 @@ class MapView extends Component {
         );
     };
 
+    // custom stying for Leaflet popup items
     function buildPopUpConfig(properties) {
       let popUpConfig = {};
 
@@ -51,18 +47,21 @@ class MapView extends Component {
       return popUpConfig;
     }
 
+    // gather external geojson, prepare it to be used on map
     var nflData = fetch(NFL)
       .then(res => res.json())
       .then(function(data) {
         var nfl_data;
         nfl_data = L.geoJson(null, {
           pointToLayer: function(feature, latlng) {
+            // use custom stying prepared starting at line 36
             var markerConfig = buildPopUpConfig(feature.properties);
             return L.marker(latlng, { icon: myIcon })
               .bindPopup(markerConfig.HTML)
               .openPopup();
           },
           filter: function(feature, layer) {
+            // assure layer will show both NFC and AFC teams, this is the defaul layer
             return (
               feature.properties.Conference === "NFC" ||
               feature.properties.Conference === "AFC"
@@ -96,6 +95,7 @@ class MapView extends Component {
                   .openPopup();
               },
               filter: function(feature, layer) {
+                // assure layer will ONLY show AFC teams
                 return feature.properties.Conference === "AFC";
               }
             });
@@ -104,7 +104,6 @@ class MapView extends Component {
               .then(res => res.json())
               .then(function(data) {
                 nfl_data.addData(data.features);
-                // nfl_data.addData(data.features);
               });
 
             myData.addLayer(nfl_data);
@@ -129,6 +128,7 @@ class MapView extends Component {
                   .openPopup();
               },
               filter: function(feature, layer) {
+                // assure layer will show BOTH AFC and NFC teams
                 return (
                   feature.properties.Conference === "AFC" ||
                   feature.properties.Conference === "NFC"
@@ -140,7 +140,6 @@ class MapView extends Component {
               .then(res => res.json())
               .then(function(data) {
                 nfl_data.addData(data.features);
-                // nfl_data.addData(data.features);
               });
 
             myData.addLayer(nfl_data);
@@ -164,6 +163,7 @@ class MapView extends Component {
               },
 
               filter: function(feature, layer) {
+                // assure layer will ONLY show NFC teams
                 return feature.properties.Conference === "NFC";
               }
             });
@@ -179,7 +179,7 @@ class MapView extends Component {
             myData.addTo(map);
           });
       });
-
+    // style custom football map icon
     var myIcon = L.divIcon({
       html: `<i style="color:#624a2e" class="fas fa-football-ball fa-10 aria-hidden="true""></i>`,
       className: "my-div-icon",
@@ -199,6 +199,7 @@ class MapView extends Component {
     var map = L.map("map", {
       zoomControl: false
     })
+      // fit bounds of contiguous USA
       .fitBounds([[18.9, -69], [47.0, -117.3]])
       .addLayer(osm);
   }
