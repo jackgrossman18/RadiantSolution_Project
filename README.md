@@ -20,6 +20,14 @@ Immediately below, you will see a map that is filter to only show AFC teams.
 
 ![AFC Map](https://user-images.githubusercontent.com/25868208/46432246-c3ee0300-c71b-11e8-8ad9-1f4167e07f99.png)
 
+### Features Table
+
+On the right hand side of the map there is a table that shows only teams in the AFC, as was required for this coding challenge.
+
+The items are filtered by iterating of the GeoJSON and only placing teams within the table using a conditional that checks whether the team's conference is equal to AFC.
+
+![AFC Table](https://user-images.githubusercontent.com/25868208/46432695-dcaae880-c71c-11e8-8109-1dadedd14b0b.png)
+
 
 ### GeoJSON Feature Details
 
