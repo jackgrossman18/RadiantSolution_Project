@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import L from "leaflet";
 import "./App.css";
 
-// GeoJson object array of NFL Football teams
 const NFL =
   "https://gist.githubusercontent.com/brianhatchl/59d99872a9cfc0e126211192673991b8/raw/bf706c06ef41f05a35b1bd730639eed54cc7af27/stadiums.json";
 
@@ -114,22 +113,6 @@ class MapView extends Component {
 
         teamsData().then(res => {
           nfl_data.addData(getThis().state.theNfl);
-          // let nfcState = Object.assign({}, this.state);
-
-          // nfcState = getThis().state.nfc.filter(
-          //   conf => conf.properties.Conference === "NFC"
-          // );
-
-          // getThis().setState({ nfc: nfcState });
-          console.log(getThis().state.nfc);
-
-          // let afcState = Object.assign({}, this.state);
-
-          // afcState = getThis().state.afc.filter(
-          //   conf => conf.properties.Conference === "AFC"
-          // );
-          // getThis().setState({ afc: afcState });
-          console.log(getThis().state.afc);
         });
 
         myData.addLayer(nfl_data);
