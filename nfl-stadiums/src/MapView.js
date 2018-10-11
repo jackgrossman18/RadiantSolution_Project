@@ -142,7 +142,6 @@ class MapView extends Component {
   }
 
   render() {
-    console.log(this.state.theNfl);
     return (
       <div>
         <div className="container">
