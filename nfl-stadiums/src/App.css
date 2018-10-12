@@ -155,6 +155,8 @@ body {
     margin-right: 2px;
 }
 label {
+  letter-spacing: .01em;
+  font-size: 22.5px;
   display: flex;
   font-weight: bold;
   flex-direction: column;

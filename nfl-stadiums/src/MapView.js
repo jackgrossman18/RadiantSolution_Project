@@ -11,9 +11,21 @@ class MapView extends Component {
     this.state = {
       nfc: [],
       afc: [],
-      theNfl: []
+      theNfl: [],
+      value: this.props.value,
+      selectedRadio: ""
     };
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange = e => {
+    const { name, value } = e.target;
+
+    this.setState({
+      [name]: value
+    });
+    var newExpression = { [e.target.value]: e.target.value };
+  };
 
   componentDidMount() {
     var getThis = () => this;
@@ -142,6 +154,7 @@ class MapView extends Component {
   }
 
   render() {
+    const { value } = this.state;
     return (
       <div>
         <div className="container">
@@ -196,39 +209,45 @@ class MapView extends Component {
           <form>
             <label>
               <input
+                onClick={this.handleClick}
                 type="radio"
                 id="radioOne"
                 name="AFC"
                 value="AFC"
-                checked
-              />{" "}
-              Select AFC Teams
+                checked={value === "AFC"}
+                onChange={this.handleChange}
+              />
+              Select AFC Team
               <img src="https://mbtskoudsalg.com/images/nfc-nfl-logo-png-8.png" />
             </label>
             <br />
             <label>
               <input
+                onClick={this.handleClick}
                 type="radio"
                 id="radioThree"
                 name="NFC"
                 value="NFC"
-                checked
-              />{" "}
+                checked={value === "NFC"}
+                onChange={this.handleChange}
+              />
               Select NFC Teams
               <img src="https://mbtskoudsalg.com/images/nfc-nfl-logo-png-2.png" />
             </label>
             <br />
             <label className="NFL" for="radioTwo">
               <input
+                onClick={this.handleClick}
                 type="radio"
                 id="radioTwo"
                 name="ALLNFL"
                 value="NFL"
-                checked
+                checked={value === "NFL"}
+                onChange={this.handleChange}
               />
               Select All Teams
               <img src="https://mbtskoudsalg.com/images/nfl-icons-png-1.png" />
-            </label>{" "}
+            </label>
             <br />
           </form>
         </div>
