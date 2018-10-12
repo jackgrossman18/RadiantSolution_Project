@@ -19,7 +19,12 @@ The three buttons that reside beneath the map allow the user to filter the GeoJS
 Immediately below, you will see a map that is filtered to only show AFC teams.
 
 
-![AFC Map](https://user-images.githubusercontent.com/25868208/46432246-c3ee0300-c71b-11e8-8ad9-1f4167e07f99.png)
+![AFC Map](https://user-images.githubusercontent.com/25868208/46872035-10fb6480-ce01-11e8-9b1a-d7cb02255c63.png)
+
+Here you will see the map with just NFC teams.
+
+![NFC Map](https://user-images.githubusercontent.com/25868208/46872110-47d17a80-ce01-11e8-98cb-a132c322c447.png)
+
 
 ### Features Table
 
