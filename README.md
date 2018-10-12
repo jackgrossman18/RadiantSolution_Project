@@ -45,4 +45,4 @@ Once the map has zoomed to the location of that team's stadium, if the user clic
 
 Immediately below you will see the popup for the Philadelphia Eagles.
 
-![Philadelphia Eagles](https://user-images.githubusercontent.com/25868208/46432494-6b6b3580-c71c-11e8-8b21-e2c2936d91a2.png)
+![Philadelphia Eagles](https://user-images.githubusercontent.com/25868208/46872568-7c920180-ce02-11e8-8aa8-a8db8d881810.png)
