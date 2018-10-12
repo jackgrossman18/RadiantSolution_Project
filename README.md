@@ -2,7 +2,8 @@
 
 ## NFL Stadiums Map
 
-![Teams Map](https://user-images.githubusercontent.com/25868208/46430371-c26e0c00-c716-11e8-95a4-0649e180c344.png)
+![Teams Map](https://user-images.githubusercontent.com/25868208/46871910-a5b19280-ce00-11e8-8514-f49f39a0c704.png)
+![Conference Buttons](https://user-images.githubusercontent.com/25868208/46871910-a5b19280-ce00-11e8-8514-f49f39a0c704.png)
 
 
 ### About 
